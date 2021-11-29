@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace MVCLesson_1
 {
@@ -23,6 +24,45 @@ namespace MVCLesson_1
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+        
+        public int f = 0;
+        static int Fibbo(int n)
+        {
+            if (n == 0)
+            {
+                n = 0;
+                return n;
+            }
+            else if (n == 1)
+            {
+                n = 1;
+                return n;
+            }
+            return Fibbo(n - 1) + Fibbo(n - 2);
+        }
+        
+        public void Fibb()
+        {
+            
+            TextBox1.Dispatcher.Invoke(() => TextBox1.Text= f.ToString()); 
+            
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            int i = 0;
+           // Thread.Sleep(1000);
+            while (i<10)
+            {
+                Thread.Sleep(1000);
+                Fibb();
+                f =Fibbo(i);
+                
+                
+                i++;
+            }
         }
     }
 }
