@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="80,29,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="35"/>
+        <TextBox HorizontalAlignment="Left" Margin="80,29,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="35"/>
         <Slider HorizontalAlignment="Left" Margin="70,174,0,0" VerticalAlignment="Top" Width="590" Height="50"/>
 
     </Grid>
