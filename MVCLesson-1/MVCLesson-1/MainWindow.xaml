@@ -7,9 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Slider HorizontalAlignment="Left" Margin="70,174,0,0" VerticalAlignment="Top" Width="590" Height="50"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="115,284,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="103*"/>
+        </Grid.ColumnDefinitions>
+        <Slider HorizontalAlignment="Left" Margin="70,174,0,0" VerticalAlignment="Top" Width="590" Height="50" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="110,69,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="115,249,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

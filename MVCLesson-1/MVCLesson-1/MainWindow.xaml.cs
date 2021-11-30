@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace MVCLesson_1
 {
@@ -21,13 +22,37 @@ namespace MVCLesson_1
     /// </summary>
     public partial class MainWindow : Window
     {
+       public int f;
         public MainWindow()
-        {
-            InitializeComponent();
-            
+        {  
+           InitializeComponent();
+           
+           //TextBox1.Dispatcher.Invoke(() => TextBox1.Text = f.ToString());
+            //Thread f = new Thread(Plus);
+            //f.Start();
+            //TextBox1.Text = f.ToString();
         }
+       
+
+        //public void Plus()
+        //{
+        //    Thread.Sleep(1000);
+            
+            
+        //        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+        //        {
+        //            int i = 0;
+        //            while (i < 10)
+        //            {
+        //                TextBox1.Text = Fibbo(i).ToString();
+        //                i++;
+        //            }
+                        
+        //        }));
+
+        //}
         
-        public int f = 0;
+       
         static int Fibbo(int n)
         {
             if (n == 0)
@@ -42,27 +67,56 @@ namespace MVCLesson_1
             }
             return Fibbo(n - 1) + Fibbo(n - 2);
         }
-        
-        public void Fibb()
+        static int Cl()
+        {
+            int i = 0;
+            while (i < 10)
+            {
+                
+                return Fibbo(i);
+            }
+            return Fibbo(i);
+        }
+         void  F()
         {
             
-            TextBox1.Dispatcher.Invoke(() => TextBox1.Text= f.ToString()); 
+          Application.Current.Dispatcher.BeginInvoke(() => TextBox1.Text = f.ToString());
+              
             
+
+                // TextBox1.Dispatcher.Invoke(() => TextBox1.Text = f.ToString());
+                //Application.Current.Dispatcher.BeginInvoke(() => TextBox1.Text = f.ToString());
+
+
+
+                //Thread a = new Thread(() => F());
+                //a.Start();
+                // TextBox1.Dispatcher.Invoke(() => TextBox1.Text = f.ToString());
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             
-            int i = 0;
-           // Thread.Sleep(1000);
-            while (i<10)
+            
+            while (f < 10)
             {
-                Thread.Sleep(1000);
-                Fibb();
-                f =Fibbo(i);
-                
-                
-                i++;
+                Thread a = new Thread(() => F());
+                a.Start();
+                Application.Current.Dispatcher.BeginInvoke(() => TextBox1.Text = f.ToString());
+                //Application.Current.Dispatcher.BeginInvoke(() => TextBox1.Text = f.ToString());
+                Thread.Sleep(10000);
+                f++;
             }
+
+            
+
+             
+
+               
+            
+                
+            
+          
         }
     }
 }
