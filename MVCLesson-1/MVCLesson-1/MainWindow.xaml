@@ -11,7 +11,7 @@
             <ColumnDefinition Width="57*"/>
             <ColumnDefinition Width="103*"/>
         </Grid.ColumnDefinitions>
-        <Slider HorizontalAlignment="Left" Margin="70,174,0,0" VerticalAlignment="Top" Width="590" Height="50" Grid.ColumnSpan="2"/>
+        <Slider x:Name="Slider1" HorizontalAlignment="Left" Margin="70,174,0,0" VerticalAlignment="Top" Width="590" Height="50" Grid.ColumnSpan="2" ValueChanged="Slider1_ValueChanged"/>
         <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="110,69,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="115,249,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
