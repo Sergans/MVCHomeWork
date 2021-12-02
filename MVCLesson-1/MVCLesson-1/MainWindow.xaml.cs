@@ -22,55 +22,57 @@ namespace MVCLesson_1
     /// </summary>
     public partial class MainWindow : Window
     {
-        int f = 0;
+        int func_out = 0;
+        int regulator=1000;
         public MainWindow()
         {  
           InitializeComponent();
-            Thread tred = new Thread(Plus);
+            Thread tred = new Thread(NomberOut);
             tred.Start();
-            TextBox1.Text = f.ToString();
-            
-
+            TextBox1.Text = func_out.ToString();
+            TextBox2.Text = regulator.ToString();
         }
 
-        public void Plus()
+        public void NomberOut()
         {
-            
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; true; ++i)
             {
-                f = i;
-                Thread.Sleep(2000);
-                TextBox1.Dispatcher.Invoke(()=>TextBox1.Text = f.ToString());
-              
+               func_out= Fibbo(i);
+               Thread.Sleep(regulator);
+               TextBox1.Dispatcher.Invoke(()=>TextBox1.Text = func_out.ToString());
             }
         }
 
 
-        static int Fibbo(int n)
+        static int Fibbo(int nomber_position)
         {
-            Thread.Sleep(1000);
-            if (n == 0)
+           
+            if (nomber_position == 0)
             {
-                n = 0;
-                return n;
+                nomber_position = 0;
+                return nomber_position;
             }
-            else if (n == 1)
+            else if (nomber_position == 1)
             {
-                n = 1;
-                return n;
+                nomber_position = 1;
+                return nomber_position;
             }
-            return Fibbo(n - 1) + Fibbo(n - 2);
+            return Fibbo(nomber_position - 1) + Fibbo(nomber_position - 2);
         }
-        
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Slider1.Value = 0;
-        }
-
+       
         private void Slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            TextBox1.Text =((int)Slider1.Value).ToString();
+            if (Slider1.Value < 1)
+            {
+                regulator = 1000;
+                TextBox2.Text = regulator.ToString();
+            }
+            else 
+            { 
+                regulator = (int)Slider1.Value * 1000;
+                TextBox2.Text = regulator.ToString();
+            }
+            
         }
     }
 }
