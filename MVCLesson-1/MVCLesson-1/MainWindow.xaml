@@ -12,9 +12,9 @@
             <ColumnDefinition Width="103*"/>
         </Grid.ColumnDefinitions>
         <Slider x:Name="Slider1" HorizontalAlignment="Left" Margin="25,179,0,0" VerticalAlignment="Top" Width="590" Height="50" Grid.ColumnSpan="2" ValueChanged="Slider1_ValueChanged"/>
-        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="110,69,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Margin="80,69,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="690" Height="105" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TextBox2" Grid.Column="1" HorizontalAlignment="Left" Margin="345,181,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Nomber" HorizontalAlignment="Left" Margin="52,64,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="Nomber" HorizontalAlignment="Left" Margin="20,64,0,0" VerticalAlignment="Top" Height="25"/>
         <Label Content="ms" Grid.Column="1" HorizontalAlignment="Left" Margin="470,178,0,0" VerticalAlignment="Top"/>
 
     </Grid>

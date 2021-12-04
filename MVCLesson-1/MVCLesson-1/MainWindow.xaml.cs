@@ -22,7 +22,7 @@ namespace MVCLesson_1
     /// </summary>
     public partial class MainWindow : Window
     {
-        int func_out = 0;
+        int func_out=0;
         int regulator=1000;
         public MainWindow()
         {  
@@ -39,14 +39,14 @@ namespace MVCLesson_1
             {
                func_out= Fibbo(i);
                Thread.Sleep(regulator);
-               TextBox1.Dispatcher.Invoke(()=>TextBox1.Text = func_out.ToString());
+               TextBox1.Dispatcher.Invoke(()=>TextBox1.Text = $"{TextBox1.Text},{func_out}");
             }
         }
 
 
         static int Fibbo(int nomber_position)
         {
-           
+            
             if (nomber_position == 0)
             {
                 nomber_position = 0;
