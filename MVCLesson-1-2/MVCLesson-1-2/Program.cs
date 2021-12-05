@@ -4,14 +4,20 @@ using System.Collections.Generic;
 
 namespace MVCLesson_1_2
 {
+    
     public class Operation<T>
     {
-       public List<T> ls = new List<T>();
+        private static object lockObject = new object();
+        public List<T> ls = new List<T>();
         public void Add(T item)
         {
-            Thread.Sleep(1000);
-            lock (ls) ;
-            ls.Add(item);
+            
+            //lock (ls)
+            {
+                ls.Add(item);
+                Thread.Sleep(1000);
+            }
+            
         }
         public void Delete(T item)
         {
@@ -20,6 +26,8 @@ namespace MVCLesson_1_2
     }
     class Program
     {
+       
+
         static void Foo()
         {
             
@@ -27,14 +35,18 @@ namespace MVCLesson_1_2
         static void Main(string[] args)
         {
             Operation<string> op = new Operation<string>();
-            Thread tred = new Thread(() => op.Add("ffffff"));
-            Thread tred1 = new Thread(() => op.Add("aaaaaa"));
-            tred.Start();
-            tred1.Start();
-            Thread.Sleep(1000);
-           foreach(var s in op.ls)
+            //op.Add("11ffghff");
+            //op.Add("22fffff");
+            for(int i = 0; i < 20; i++)
             {
-                Console.WriteLine(s);
+                Thread tred = new Thread(new ThreadStart(() => op.Add($"ffffff{i}")));
+                tred.Start();
+            }
+           
+           // Thread.Sleep(2000);
+            for (int i = 0; i < op.ls.Count; i++)
+            {
+                Console.WriteLine(op.ls[i]);
             }
             
         }
