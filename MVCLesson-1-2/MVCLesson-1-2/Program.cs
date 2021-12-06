@@ -7,21 +7,25 @@ namespace MVCLesson_1_2
     
     public class Operation<T>
     {
-        private static object lockObject = new object();
+        static object lockObject = new object();
         public List<T> ls = new List<T>();
         public void Add(T item)
         {
-            
-            //lock (ls)
+           
+            lock (lockObject)
             {
                 ls.Add(item);
-                Thread.Sleep(1000);
+               
             }
-            
+            Thread.Sleep(1000);
         }
         public void Delete(T item)
         {
-            ls.Remove(item);
+            lock (lockObject)
+            {
+                ls.Remove(item);
+            }
+            Thread.Sleep(1000);
         }
     }
     class Program
@@ -35,15 +39,18 @@ namespace MVCLesson_1_2
         static void Main(string[] args)
         {
             Operation<string> op = new Operation<string>();
-            //op.Add("11ffghff");
-            //op.Add("22fffff");
+            
             for(int i = 0; i < 20; i++)
             {
                 Thread tred = new Thread(new ThreadStart(() => op.Add($"ffffff{i}")));
+                Thread.Sleep(10);
                 tred.Start();
             }
-           
-           // Thread.Sleep(2000);
+
+            Thread thread = new Thread(() => op.Delete(op.ls[10]));
+            thread.Start();
+            Thread thread1 = new Thread(() => op.Delete(op.ls[10]));
+            thread.Start();
             for (int i = 0; i < op.ls.Count; i++)
             {
                 Console.WriteLine(op.ls[i]);
