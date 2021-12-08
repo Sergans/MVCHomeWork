@@ -48,17 +48,17 @@ namespace MVCLesson_3
        
 
         public MainWindow()
-        {// создаем привязку команды
+        {
+            // btn1.Command = ApplicationCommands.Copy;
+            InitializeComponent();
+            // создаем привязку команды
             CommandBinding commandBinding = new CommandBinding();
             // устанавливаем команду
             commandBinding.Command = ApplicationCommands.Help;
             // устанавливаем метод, который будет выполняться при вызове команды
-            commandBinding.Executed += Button_Click;
+            commandBinding.Executed += CommandBinding_Executed;
             // добавляем привязку к коллекции привязок элемента Button
             btn1.CommandBindings.Add(commandBinding);
-
-            // btn1.Command = ApplicationCommands.Copy;
-            InitializeComponent();
             var cm = new Comand1(o => { MessageBox.Show("Команда" + o.ToString()); });
             //cm.Execute("1");
         }
@@ -68,6 +68,10 @@ namespace MVCLesson_3
             // var cm = new Comand1(o => {Text1.Text=("Команда" + o.ToString()); });
 
             // btn1.Command = ApplicationCommands.Help;
+          //  MessageBox.Show("Справка по приложению");
+        }
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
             MessageBox.Show("Справка по приложению");
         }
     }
