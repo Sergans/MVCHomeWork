@@ -15,20 +15,40 @@ using System.Windows.Shapes;
 
 namespace MVCLesson_3_1
 {
-    public class ComandManager : ICommand
+    internal sealed class ComandManager
     {
+        public void OperationEx(ICommand item)
+        {
+            item.Execute();
+        }
+        public bool OperationCanEx(ICommand item)
+        {
+            item.CanExecute();
+            return item == null ||item.CanExecute(item);
+        }
+    }
+    public class Command1 : ICommand
+    {
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
         public event EventHandler CanExecuteChanged;
+        public Command1(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return this.canExecute == null || this.canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            this.execute(parameter);
         }
     }
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
